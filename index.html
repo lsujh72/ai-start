@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Моя перша AI-сторінка</title>
+<style>
+  :root {
+    --sky: #1f5fbf;
+    --sky-deep: #123d80;
+    --sun: #ffd23f;
+    --paper: #f4f8ff;
+    --ink: #10213f;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { height: 100%; margin: 0; }
+
+  body {
+    font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 85% 12%, var(--sun) 0 90px, transparent 91px),
+      linear-gradient(180deg, var(--paper) 0%, #dce9ff 100%);
+    display: grid;
+    place-items: center;
+    padding: 24px;
+  }
+
+  main {
+    text-align: center;
+    max-width: 720px;
+  }
+
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.6rem, 9vw, 5.5rem);
+    line-height: 1.05;
+    margin: 0 0 18px;
+    color: var(--sky-deep);
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    font-size: 1.15rem;
+    margin: 0 0 36px;
+    color: #3b4f73;
+  }
+
+  button {
+    font: inherit;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    background: var(--sky);
+    border: none;
+    border-radius: 999px;
+    padding: 16px 40px;
+    cursor: pointer;
+    box-shadow: 0 6px 0 var(--sky-deep);
+    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+  }
+
+  button:hover { background: #2a70d9; }
+
+  button:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 var(--sky-deep);
+  }
+
+  button:focus-visible {
+    outline: 3px solid var(--sun);
+    outline-offset: 4px;
+  }
+
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: 40px;
+    transform: translate(-50%, 24px);
+    background: var(--ink);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease, transform .25s ease;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    button, .toast { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <main>
+    <h1>Моя перша AI-сторінка</h1>
+    <p>Натисни кнопку й перевір, чи все працює.</p>
+    <button id="greet" type="button">Привітатись</button>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">Все працює!</div>
+
+  <script>
+    const btn = document.getElementById('greet');
+    const toast = document.getElementById('toast');
+    let timer;
+
+    btn.addEventListener('click', () => {
+      toast.classList.add('show');
+      clearTimeout(timer);
+      timer = setTimeout(() => toast.classList.remove('show'), 2500);
+    });
+  </script>
+</body>
+</html>
